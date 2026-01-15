@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HueUni Connect - Mạng xã hội Sinh viên Đại học Huế</title>
+    <meta name="description"
+        content="Nền tảng kết nối sinh viên Đại học Huế - Hội nhóm học tập, chia sẻ kinh nghiệm, cơ hội thực tập">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="#" class="logo">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">HueUni<span class="gradient-text">Connect</span></span>
+                </a>
+            </div>
+            <div class="header-center">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Tìm kiếm sinh viên, nhóm, bài viết...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn-header-premium" onclick="openPremiumModal()" title="Nâng cấp Premium">
+                    <span>💎</span>
+                    <span>Premium</span>
+                </button>
+                <button class="header-btn" title="Thông báo">
+                    <span>🔔</span>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="header-btn" title="Tin nhắn">
+                    <span>💬</span>
+                    <span class="notification-badge">5</span>
+                </button>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=MyUser" alt="Avatar">
+                    </div>
+                    <span class="user-name">Nguyễn Văn A</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="main-layout">
+        <!-- Left Sidebar -->
+        <aside class="sidebar-left">
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-tab="feed">
+                    <span class="nav-icon">🏠</span>
+                    <span>Trang chủ</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="groups">
+                    <span class="nav-icon">👥</span>
+                    <span>Hội nhóm</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="events">
+                    <span class="nav-icon">📅</span>
+                    <span>Sự kiện</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="jobs">
+                    <span class="nav-icon">💼</span>
+                    <span>Thực tập & Việc làm</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="docs">
+                    <span class="nav-icon">📚</span>
+                    <span>Tài liệu</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="mentors">
+                    <span class="nav-icon">🧑‍🏫</span>
+                    <span>Mentors</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Nhóm của tôi</h3>
+                <div class="my-groups">
+                    <a href="#" class="group-item" onclick="showGroupDetail('cntt-huet')">
+                        <div class="group-avatar">💻</div>
+                        <span>CNTT - HUET</span>
+                    </a>
+                    <a href="#" class="group-item" onclick="showGroupDetail('ktqt-hce')">
+                        <div class="group-avatar">📊</div>
+                        <span>Kinh tế Quốc tế - HCE</span>
+                    </a>
+                    <a href="#" class="group-item" onclick="showGroupDetail('tieng-anh-hufl')">
+                        <div class="group-avatar">🌍</div>
+                        <span>Tiếng Anh - HUFL</span>
+                    </a>
+                    <a href="#" class="group-item" onclick="showGroupDetail('sv-nam-1')">
+                        <div class="group-avatar">🆕</div>
+                        <span>Sinh viên Năm Nhất 2026</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Trường Đại học</h3>
+                <div class="school-filter">
+                    <button class="school-tag active" data-school="all">Tất cả</button>
+                    <button class="school-tag" data-school="huet">HUET</button>
+                    <button class="school-tag" data-school="husc">HUSC</button>
+                    <button class="school-tag" data-school="hce">HCE</button>
+                    <button class="school-tag" data-school="hufl">HUFL</button>
+                    <button class="school-tag" data-school="hued">HUED</button>
+                    <button class="school-tag" data-school="hump">HUMP</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Feed Tab -->
+            <div id="feed-tab" class="tab-content active">
+
+                <!-- Mobile Groups Section (Shows on mobile/tablet) -->
+                <div class="mobile-groups-section">
+                    <div class="mobile-groups-header">
+                        <h3>👥 Hội nhóm của tôi</h3>
+                        <a href="#" class="see-all" data-tab="groups">Xem tất cả →</a>
+                    </div>
+                    <div class="mobile-groups-scroll">
+                        <a href="#" class="mobile-group-item" onclick="showGroupDetail('cntt-huet')">
+                            <div class="mobile-group-icon"
+                                style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">💻</div>
+                            <span>CNTT</span>
+                        </a>
+                        <a href="#" class="mobile-group-item" onclick="showGroupDetail('ktqt-hce')">
+                            <div class="mobile-group-icon"
+                                style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">📊</div>
+                            <span>Kinh tế</span>
+                        </a>
+                        <a href="#" class="mobile-group-item" onclick="showGroupDetail('tieng-anh-hufl')">
+                            <div class="mobile-group-icon"
+                                style="background: linear-gradient(135deg, #22c55e, #10b981);">🌍</div>
+                            <span>Tiếng Anh</span>
+                        </a>
+                        <a href="#" class="mobile-group-item" onclick="showGroupDetail('sv-nam-1')">
+                            <div class="mobile-group-icon"
+                                style="background: linear-gradient(135deg, #f59e0b, #ef4444);">🆕</div>
+                            <span>Năm Nhất</span>
+                        </a>
+                        <a href="#" class="mobile-group-item">
+                            <div class="mobile-group-icon"
+                                style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">⚕️</div>
+                            <span>Y khoa</span>
+                        </a>
+                        <a href="#" class="mobile-group-item">
+                            <div class="mobile-group-icon"
+                                style="background: linear-gradient(135deg, #64748b, #475569);">➕</div>
+                            <span>Thêm</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Ad Banner (Inline) -->
+                <div class="mobile-ad-banner card">
+                    <span class="ad-label">Tài trợ</span>
+                    <div class="mobile-ad-content">
+                        <span class="mobile-ad-icon">💻</span>
+                        <div class="mobile-ad-text">
+                            <strong>Laptop sinh viên - Giảm 500K</strong>
+                            <span>Dell, Asus, Lenovo - Trả góp 0%</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Xem</button>
+                    </div>
+                </div>
+
+                <!-- Create Post -->
+                <div class="create-post card">
+                    <div class="create-post-header">
+                        <div class="user-avatar small">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=MyUser" alt="Avatar">
+                        </div>
+                        <button class="create-post-input" onclick="openPostModal()">
+                            Bạn đang nghĩ gì? Chia sẻ với cộng đồng...
+                        </button>
+                    </div>
+                    <div class="create-post-actions">
+                        <button class="post-action-btn">
+                            <span>📷</span> Ảnh/Video
+                        </button>
+                        <button class="post-action-btn">
+                            <span>📝</span> Tài liệu
+                        </button>
+                        <button class="post-action-btn">
+                            <span>❓</span> Hỏi đáp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Posts Feed -->
+                <div class="posts-feed">
+                    <!-- Post 1 -->
+                    <article class="post card">
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="user-avatar">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=TranB" alt="Avatar">
+                                </div>
+                                <div class="author-info">
+                                    <div class="author-name">Trần Thị B <span class="verified">✓</span></div>
+                                    <div class="post-meta">
+                                        <span class="post-group">💻 CNTT - HUET</span>
+                                        <span class="post-time">• 2 giờ trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="post-menu">⋮</button>
+                        </div>
+                        <div class="post-content">
+                            <p>Mình vừa hoàn thành kỳ thực tập tại FPT Software! Chia sẻ một số kinh nghiệm cho các bạn:
+                            </p>
+                            <ul>
+                                <li>📌 Chuẩn bị CV thật kỹ, highlight các project đã làm</li>
+                                <li>📌 Học thêm về Agile/Scrum vì hầu hết công ty đều dùng</li>
+                                <li>📌 Đừng ngại hỏi mentor khi không hiểu</li>
+                            </ul>
+                            <p>Ai có câu hỏi gì cứ comment nhé! 🙌</p>
+                        </div>
+                        <div class="post-tags">
+                            <span class="tag">#ThựcTập</span>
+                            <span class="tag">#FPTSoftware</span>
+                            <span class="tag">#KinhNghiệm</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>❤️ 124 thích</span>
+                            <span>💬 28 bình luận</span>
+                            <span>🔖 56 lưu</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn"><span>❤️</span><span> Thích</span></button>
+                            <button class="action-btn"><span>💬</span><span> Bình luận</span></button>
+                            <button class="action-btn"><span>🔖</span><span> Lưu</span></button>
+                        </div>
+                        <div class="post-comments">
+                            <div class="comment">
+                                <div class="user-avatar small">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=LeC" alt="Avatar">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Lê Văn C</div>
+                                    <p>Cảm ơn chị đã chia sẻ! Em đang năm 3, sắp tìm thực tập. Cho em hỏi FPT có yêu cầu
+                                        TOEIC không ạ?</p>
+                                </div>
+                            </div>
+                            <div class="comment reply">
+                                <div class="user-avatar small">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=TranB" alt="Avatar">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Trần Thị B <span class="author-badge">Tác giả</span>
+                                    </div>
+                                    <p>@Lê Văn C Có em nhé! Yêu cầu tối thiểu 450 TOEIC hoặc tương đương 🙂</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="post card">
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="user-avatar">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=NguyenD" alt="Avatar">
+                                </div>
+                                <div class="author-info">
+                                    <div class="author-name">Nguyễn Văn D</div>
+                                    <div class="post-meta">
+                                        <span class="post-group">🆕 Sinh viên Năm Nhất 2026</span>
+                                        <span class="post-time">• 5 giờ trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="post-menu">⋮</button>
+                        </div>
+                        <div class="post-content">
+                            <p>Chào mọi người! Em mới vào năm nhất HUET, chuyên ngành CNTT. Ai có thể cho em xin tài
+                                liệu ôn tập môn Giải tích 1 được không ạ? 🙏</p>
+                            <p>Em cảm ơn trước!</p>
+                        </div>
+                        <div class="post-tags">
+                            <span class="tag">#NămNhất</span>
+                            <span class="tag">#GiảiTích</span>
+                            <span class="tag">#XinTàiLiệu</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>❤️ 45 thích</span>
+                            <span>💬 12 bình luận</span>
+                            <span>🔖 8 lưu</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn"><span>❤️</span><span> Thích</span></button>
+                            <button class="action-btn"><span>💬</span><span> Bình luận</span></button>
+                            <button class="action-btn"><span>🔖</span><span> Lưu</span></button>
+                        </div>
+                    </article>
+
+                    <!-- Inline Ad -->
+                    <div class="inline-ad card">
+                        <span class="ad-label">Quảng cáo</span>
+                        <div class="inline-ad-content">
+                            <div class="inline-ad-icon">🎓</div>
+                            <div class="inline-ad-info">
+                                <h4>Khóa học IELTS 7.0+ - Giảm 30%</h4>
+                                <p>Cam kết đầu ra • Học phí sinh viên</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm btn-block">Đăng ký ngay</button>
+                    </div>
+
+                    <!-- Post 3 - Job Opportunity -->
+                    <article class="post card job-post">
+                        <div class="job-badge">💼 Cơ hội thực tập</div>
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="user-avatar company">
+                                    <img src="https://api.dicebear.com/7.x/identicon/svg?seed=VNG" alt="VNG">
+                                </div>
+                                <div class="author-info">
+                                    <div class="author-name">VNG Corporation <span class="verified">✓</span></div>
+                                    <div class="post-meta">
+                                        <span class="post-group">💼 Thực tập & Việc làm</span>
+                                        <span class="post-time">• 1 ngày trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="job-title">🚀 Intern Software Engineer - Summer 2026</h3>
+                            <div class="job-info">
+                                <span>📍 Đà Nẵng, TP.HCM</span>
+                                <span>💰 6-8 triệu/tháng</span>
+                                <span>⏰ 3-6 tháng</span>
+                            </div>
+                            <p>VNG đang tìm kiếm các bạn sinh viên năm 3-4 chuyên ngành CNTT có đam mê với lập trình và
+                                muốn trải nghiệm môi trường làm việc chuyên nghiệp.</p>
+                            <div class="job-requirements">
+                                <strong>Yêu cầu:</strong>
+                                <ul>
+                                    <li>Sinh viên năm 3-4 các trường ĐH chuyên ngành CNTT</li>
+                                    <li>Có kiến thức về OOP, Data Structures & Algorithms</li>
+                                    <li>Thành thạo ít nhất 1 ngôn ngữ: Java, Python, C++, Go</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn primary"><span>📝</span> Ứng tuyển ngay</button>
+                            <button class="action-btn"><span>🔖</span> Lưu</button>
+                        </div>
+                    </article>
+
+                    <!-- Post 4 -->
+                    <article class="post card">
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="user-avatar">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=PhamE" alt="Avatar">
+                                </div>
+                                <div class="author-info">
+                                    <div class="author-name">Phạm Thị E</div>
+                                    <div class="post-meta">
+                                        <span class="post-group">🌍 Tiếng Anh - HUFL</span>
+                                        <span class="post-time">• 6 giờ trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="post-menu">⋮</button>
+                        </div>
+                        <div class="post-content">
+                            <p>Mình có tổng hợp một số tips để thi IELTS 7.0+ cho các bạn:</p>
+                            <div class="post-image">
+                                <div class="image-placeholder">
+                                    📊 IELTS Study Tips Infographic
+                                </div>
+                            </div>
+                            <p>Nếu các bạn cần file PDF chi tiết, comment email mình gửi nhé! 📧</p>
+                        </div>
+                        <div class="post-tags">
+                            <span class="tag">#IELTS</span>
+                            <span class="tag">#TiếngAnh</span>
+                            <span class="tag">#StudyTips</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>❤️ 256 thích</span>
+                            <span>💬 89 bình luận</span>
+                            <span>🔖 178 lưu</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn"><span>❤️</span><span> Thích</span></button>
+                            <button class="action-btn"><span>💬</span><span> Bình luận</span></button>
+                            <button class="action-btn"><span>🔖</span><span> Lưu</span></button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Groups Tab -->
+            <div id="groups-tab" class="tab-content">
+                <div class="groups-header">
+                    <h2>Hội nhóm theo Trường & Chuyên ngành</h2>
+                    <button class="btn btn-primary" onclick="openCreateGroupModal()">
+                        <span>➕</span> Tạo nhóm mới
+                    </button>
+                </div>
+
+                <div class="groups-filter">
+                    <button class="filter-btn active" data-filter="all">Tất cả</button>
+                    <button class="filter-btn" data-filter="joined">Đã tham gia</button>
+                    <button class="filter-btn" data-filter="suggested">Đề xuất</button>
+                </div>
+
+                <div class="groups-grid">
+                    <!-- Group Card 1 -->
+                    <div class="group-card card" data-school="huet">
+                        <div class="group-cover" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                            <span class="group-emoji">💻</span>
+                        </div>
+                        <div class="group-info">
+                            <h3>Công nghệ Thông tin - HUET</h3>
+                            <p class="group-stats">👥 2,450 thành viên • 📝 120 bài/tuần</p>
+                            <p class="group-desc">Cộng đồng sinh viên CNTT trường ĐH Khoa học Huế. Chia sẻ kiến thức,
+                                tài liệu, cơ hội việc làm.</p>
+                            <div class="group-tags">
+                                <span class="tag">Lập trình</span>
+                                <span class="tag">AI/ML</span>
+                                <span class="tag">Web Dev</span>
+                            </div>
+                            <button class="btn btn-secondary joined">✓ Đã tham gia</button>
+                        </div>
+                    </div>
+
+                    <!-- Group Card 2 -->
+                    <div class="group-card card" data-school="hce">
+                        <div class="group-cover" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
+                            <span class="group-emoji">📊</span>
+                        </div>
+                        <div class="group-info">
+                            <h3>Kinh tế Quốc tế - HCE</h3>
+                            <p class="group-stats">👥 1,890 thành viên • 📝 85 bài/tuần</p>
+                            <p class="group-desc">Nhóm sinh viên Kinh tế Quốc tế, chia sẻ kiến thức về tài chính, thương
+                                mại, marketing.</p>
+                            <div class="group-tags">
+                                <span class="tag">Kinh tế</span>
+                                <span class="tag">Tài chính</span>
+                                <span class="tag">Marketing</span>
+                            </div>
+                            <button class="btn btn-secondary joined">✓ Đã tham gia</button>
+                        </div>
+                    </div>
+
+                    <!-- Group Card 3 -->
+                    <div class="group-card card" data-school="hufl">
+                        <div class="group-cover" style="background: linear-gradient(135deg, #22c55e, #10b981);">
+                            <span class="group-emoji">🌍</span>
+                        </div>
+                        <div class="group-info">
+                            <h3>Tiếng Anh - HUFL</h3>
+                            <p class="group-stats">👥 3,200 thành viên • 📝 150 bài/tuần</p>
+                            <p class="group-desc">Cộng đồng học tiếng Anh lớn nhất ĐH Huế. IELTS, TOEIC, giao tiếp, dịch
+                                thuật.</p>
+                            <div class="group-tags">
+                                <span class="tag">IELTS</span>
+                                <span class="tag">TOEIC</span>
+                                <span class="tag">Speaking</span>
+                            </div>
+                            <button class="btn btn-secondary joined">✓ Đã tham gia</button>
+                        </div>
+                    </div>
+
+                    <!-- Group Card 4 -->
+                    <div class="group-card card" data-school="hued">
+                        <div class="group-cover" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                            <span class="group-emoji">📚</span>
+                        </div>
+                        <div class="group-info">
+                            <h3>Sư phạm Toán - HUED</h3>
+                            <p class="group-stats">👥 980 thành viên • 📝 45 bài/tuần</p>
+                            <p class="group-desc">Nhóm sinh viên Sư phạm Toán, chia sẻ phương pháp giảng dạy và ôn thi.
+                            </p>
+                            <div class="group-tags">
+                                <span class="tag">Toán học</span>
+                                <span class="tag">Sư phạm</span>
+                            </div>
+                            <button class="btn btn-primary">+ Tham gia</button>
+                        </div>
+                    </div>
+
+                    <!-- Group Card 5 -->
+                    <div class="group-card card" data-school="hump">
+                        <div class="group-cover" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
+                            <span class="group-emoji">⚕️</span>
+                        </div>
+                        <div class="group-info">
+                            <h3>Y Đa khoa - HUMP</h3>
+                            <p class="group-stats">👥 1,560 thành viên • 📝 70 bài/tuần</p>
+                            <p class="group-desc">Cộng đồng sinh viên Y khoa, chia sẻ kiến thức y học và kinh nghiệm lâm
+                                sàng.</p>
+                            <div class="group-tags">
+                                <span class="tag">Y khoa</span>
+                                <span class="tag">Lâm sàng</span>
+                            </div>
+                            <button class="btn btn-primary">+ Tham gia</button>
+                        </div>
+                    </div>
+
+                    <!-- Group Card 6 - Năm Nhất -->
+                    <div class="group-card card featured" data-school="all">
+                        <div class="featured-badge">🔥 Hot</div>
+                        <div class="group-cover" style="background: linear-gradient(135deg, #6366f1, #ec4899);">
+                            <span class="group-emoji">🆕</span>
+                        </div>
+                        <div class="group-info">
+                            <h3>Sinh viên Năm Nhất 2026</h3>
+                            <p class="group-stats">👥 5,800 thành viên • 📝 320 bài/tuần</p>
+                            <p class="group-desc">Nhóm dành cho tất cả tân sinh viên K50 Đại học Huế. Hỏi đáp, làm quen,
+                                hỗ trợ nhau!</p>
+                            <div class="group-tags">
+                                <span class="tag">Năm nhất</span>
+                                <span class="tag">K50</span>
+                                <span class="tag">Hỗ trợ</span>
+                            </div>
+                            <button class="btn btn-secondary joined">✓ Đã tham gia</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Tab -->
+            <div id="events-tab" class="tab-content">
+                <div class="events-header">
+                    <h2>Sự kiện sắp diễn ra</h2>
+                </div>
+                <div class="events-list">
+                    <div class="event-card card">
+                        <div class="event-date">
+                            <span class="date-day">25</span>
+                            <span class="date-month">Th1</span>
+                        </div>
+                        <div class="event-info">
+                            <h3>Workshop: Cách viết CV ấn tượng</h3>
+                            <p class="event-meta">
+                                <span>🕐 14:00 - 16:00</span>
+                                <span>📍 Hội trường A - HUET</span>
+                            </p>
+                            <p class="event-desc">Hướng dẫn sinh viên cách viết CV chuyên nghiệp để xin thực tập và việc
+                                làm.</p>
+                            <div class="event-attendees">
+                                <div class="attendee-avatars">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User1" alt="">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User2" alt="">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User3" alt="">
+                                </div>
+                                <span>+124 người tham gia</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Đăng ký</button>
+                    </div>
+
+                    <div class="event-card card">
+                        <div class="event-date">
+                            <span class="date-day">28</span>
+                            <span class="date-month">Th1</span>
+                        </div>
+                        <div class="event-info">
+                            <h3>Ngày hội Việc làm Đại học Huế 2026</h3>
+                            <p class="event-meta">
+                                <span>🕐 08:00 - 17:00</span>
+                                <span>📍 Nhà thi đấu ĐH Huế</span>
+                            </p>
+                            <p class="event-desc">50+ doanh nghiệp tham gia tuyển dụng trực tiếp. Cơ hội thực tập và
+                                việc làm cho sinh viên.</p>
+                            <div class="event-attendees">
+                                <div class="attendee-avatars">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User4" alt="">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User5" alt="">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User6" alt="">
+                                </div>
+                                <span>+890 người quan tâm</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary">Quan tâm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs Tab -->
+            <div id="jobs-tab" class="tab-content">
+                <div class="jobs-header">
+                    <h2>Thực tập & Việc làm</h2>
+                    <div class="jobs-filter">
+                        <select class="filter-select">
+                            <option>Tất cả ngành</option>
+                            <option>Công nghệ thông tin</option>
+                            <option>Kinh tế - Tài chính</option>
+                            <option>Ngoại ngữ</option>
+                            <option>Marketing</option>
+                        </select>
+                        <select class="filter-select">
+                            <option>Tất cả địa điểm</option>
+                            <option>Huế</option>
+                            <option>Đà Nẵng</option>
+                            <option>TP. Hồ Chí Minh</option>
+                            <option>Hà Nội</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="jobs-list">
+                    <div class="job-card card">
+                        <div class="job-company">
+                            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=FPT" alt="FPT">
+                        </div>
+                        <div class="job-details">
+                            <h3>Intern Frontend Developer</h3>
+                            <p class="company-name">FPT Software</p>
+                            <div class="job-meta">
+                                <span>📍 Đà Nẵng</span>
+                                <span>💰 5-7 triệu</span>
+                                <span>⏰ Full-time</span>
+                            </div>
+                            <div class="job-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                        </div>
+                        <div class="job-actions">
+                            <span class="job-deadline">Hết hạn: 30/01/2026</span>
+                            <button class="btn btn-primary">Ứng tuyển</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Docs Tab -->
+            <div id="docs-tab" class="tab-content">
+                <div class="docs-header">
+                    <h2>Kho Tài liệu</h2>
+                    <div class="docs-search">
+                        <input type="text" placeholder="Tìm kiếm tài liệu...">
+                    </div>
+                </div>
+                <div class="docs-categories">
+                    <div class="doc-category card">
+                        <div class="category-icon">📐</div>
+                        <h3>Toán cao cấp</h3>
+                        <p>156 tài liệu</p>
+                    </div>
+                    <div class="doc-category card">
+                        <div class="category-icon">💻</div>
+                        <h3>Lập trình</h3>
+                        <p>234 tài liệu</p>
+                    </div>
+                    <div class="doc-category card">
+                        <div class="category-icon">🇬🇧</div>
+                        <h3>Tiếng Anh</h3>
+                        <p>189 tài liệu</p>
+                    </div>
+                    <div class="doc-category card">
+                        <div class="category-icon">📊</div>
+                        <h3>Kinh tế học</h3>
+                        <p>98 tài liệu</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mentors Tab -->
+            <div id="mentors-tab" class="tab-content">
+                <div class="mentors-header">
+                    <h2>Mentors - Người hướng dẫn</h2>
+                    <p>Kết nối với các anh chị khóa trước để được hỗ trợ học tập và định hướng nghề nghiệp</p>
+                </div>
+                <div class="mentors-grid">
+                    <div class="mentor-card card">
+                        <div class="mentor-avatar">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mentor1" alt="">
+                            <span class="online-badge"></span>
+                        </div>
+                        <div class="mentor-info">
+                            <h3>Nguyễn Minh Tuấn <span class="verified">✓</span></h3>
+                            <p class="mentor-title">Software Engineer @ Google</p>
+                            <p class="mentor-school">Cựu SV CNTT - HUET (K46)</p>
+                            <div class="mentor-stats">
+                                <span>⭐ 4.9/5</span>
+                                <span>👥 56 mentee</span>
+                            </div>
+                            <div class="mentor-tags">
+                                <span class="tag">Backend</span>
+                                <span class="tag">System Design</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Đặt lịch tư vấn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar-right">
+            <!-- Ad Banner 1 - Laptop -->
+            <div class="widget card ad-widget featured-ad">
+                <span class="ad-label">Tài trợ</span>
+                <div class="ad-content">
+                    <div class="ad-image">💻</div>
+                    <h4>Laptop sinh viên Giá Rẻ</h4>
+                    <p>Dell, Asus, Lenovo - Trả góp 0%</p>
+                    <p class="ad-discount">🔥 Giảm thêm 500K cho SV</p>
+                    <button class="btn btn-primary btn-sm">Xem ngay</button>
+                </div>
+            </div>
+
+            <!-- Ad Banner 2 - Khóa học IELTS -->
+            <div class="widget card ad-widget">
+                <span class="ad-label">Quảng cáo</span>
+                <div class="ad-content">
+                    <div class="ad-image">🎓</div>
+                    <h4>Khóa học IELTS 7.0+</h4>
+                    <p>Cam kết đầu ra - Học phí sinh viên</p>
+                    <p class="ad-discount">🔥 Giảm 30% cho SV ĐH Huế</p>
+                    <button class="btn btn-secondary btn-sm">Đăng ký ngay</button>
+                </div>
+            </div>
+
+            <!-- Ad Banner 3 - Trung tâm ngoại ngữ -->
+            <div class="widget card ad-widget">
+                <span class="ad-label">Quảng cáo</span>
+                <div class="ad-content">
+                    <div class="ad-image">🌍</div>
+                    <h4>Trung tâm Anh ngữ NewSky</h4>
+                    <p>Luyện Speaking 1-1 với giáo viên nước ngoài</p>
+                    <p class="ad-discount">🎁 Free 2 buổi học thử</p>
+                    <button class="btn btn-secondary btn-sm">Nhận ưu đãi</button>
+                </div>
+            </div>
+
+
+
+            <!-- Ad Banner 3 - Thực tập -->
+            <div class="widget card ad-widget featured-ad">
+                <span class="ad-label">Đối tác</span>
+                <div class="ad-content">
+                    <div class="ad-image">💼</div>
+                    <h4>FPT Software tuyển Intern</h4>
+                    <p>200+ vị trí thực tập Summer 2026</p>
+                    <p class="ad-discount">💰 Lương 6-8 triệu/tháng</p>
+                    <button class="btn btn-primary btn-sm">Ứng tuyển ngay</button>
+                </div>
+            </div>
+
+            <!-- Ad Banner 4 - Phòng trọ -->
+            <div class="widget card ad-widget">
+                <span class="ad-label">Quảng cáo</span>
+                <div class="ad-content">
+                    <div class="ad-image">🏠</div>
+                    <h4>Phòng trọ sinh viên giá rẻ</h4>
+                    <p>Gần các trường ĐH Huế - An ninh tốt</p>
+                    <p class="ad-discount">Từ 800K/tháng</p>
+                    <button class="btn btn-secondary btn-sm">Xem ngay</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="#" class="mobile-nav-item active" data-tab="feed">
+            <span>🏠</span>
+            <span>Trang chủ</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="groups">
+            <span>👥</span>
+            <span>Nhóm</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="jobs">
+            <span>💼</span>
+            <span>Việc làm</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="docs">
+            <span>📚</span>
+            <span>Tài liệu</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="mentors">
+            <span>🧑‍🏫</span>
+            <span>Mentors</span>
+        </a>
+    </nav>
+
+    <!-- Create Post Modal -->
+    <div id="post-modal" class="modal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h3>Tạo bài viết</h3>
+                <button class="modal-close" onclick="closePostModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="post-author-select">
+                    <div class="user-avatar">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=MyUser" alt="Avatar">
+                    </div>
+                    <div class="author-select-info">
+                        <span class="author-name">Nguyễn Văn A</span>
+                        <select class="group-select">
+                            <option>Chọn nhóm để đăng</option>
+                            <option>💻 CNTT - HUET</option>
+                            <option>📊 Kinh tế Quốc tế - HCE</option>
+                            <option>🌍 Tiếng Anh - HUFL</option>
+                            <option>🆕 Sinh viên Năm Nhất 2026</option>
+                        </select>
+                    </div>
+                </div>
+                <textarea class="post-textarea" placeholder="Bạn muốn chia sẻ điều gì?"></textarea>
+                <div class="post-attachments">
+                    <button class="attachment-btn">📷 Ảnh</button>
+                    <button class="attachment-btn">📎 File</button>
+                    <button class="attachment-btn">📍 Vị trí</button>
+                    <button class="attachment-btn">🏷️ Gắn thẻ</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block">Đăng bài</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group Detail Modal -->
+    <div id="group-modal" class="modal">
+        <div class="modal-content card modal-large">
+            <div class="modal-header">
+                <h3 id="group-modal-title">Chi tiết nhóm</h3>
+                <button class="modal-close" onclick="closeGroupModal()">✕</button>
+            </div>
+            <div class="modal-body" id="group-modal-body">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Modal -->
+    <div id="premium-modal" class="modal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h3>💎 Nâng cấp Premium</h3>
+                <button class="modal-close" onclick="closePremiumModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="premium-modal-content">
+                    <div class="premium-plans">
+                        <div class="plan-card active">
+                            <div class="plan-badge">Phổ biến</div>
+                            <h4>Hàng tháng</h4>
+                            <div class="plan-price">
+                                <span class="price-value">19K</span>
+                                <span class="price-period">/tháng</span>
+                            </div>
+                            <p class="plan-trial">🎁 Tháng đầu chỉ 9K</p>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-badge save">Tiết kiệm 20%</div>
+                            <h4>6 tháng</h4>
+                            <div class="plan-price">
+                                <span class="price-value">89K</span>
+                                <span class="price-period">/6 tháng</span>
+                            </div>
+                            <p class="plan-note">~15K/tháng</p>
+                        </div>
+                    </div>
+
+                    <div class="premium-benefits">
+                        <h4>Quyền lợi Premium:</h4>
+                        <ul>
+                            <li>✅ Kết nối không giới hạn sinh viên liên trường</li>
+                            <li>✅ Tìm kiếm nâng cao theo chuyên ngành/môn học</li>
+                            <li>✅ Nhắn tin không giới hạn</li>
+                            <li>✅ Profile được ưu tiên hiển thị</li>
+                            <li>✅ Truy cập tài liệu độc quyền từ anh chị khóa trên</li>
+                            <li>✅ Không hiển thị quảng cáo</li>
+                        </ul>
+                    </div>
+
+                    <div class="payment-methods">
+                        <p>Phương thức thanh toán:</p>
+                        <div class="payment-icons">
+                            <span>💳 Thẻ ngân hàng</span>
+                            <span>📱 MoMo</span>
+                            <span>🏦 VNPay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-premium btn-block">
+                    🚀 Bắt đầu dùng thử 9K
+                </button>
+                <p class="premium-terms">Hủy bất cứ lúc nào • Bảo mật thanh toán</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
